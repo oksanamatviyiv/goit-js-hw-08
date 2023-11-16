@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     formData.message = form.message.value;
     console.log('Form data:', formData);
   };
+    
   const throttledSaveAndLogData = throttle(saveAndLogData, 500);
 
   form.email.addEventListener('input', throttledSaveAndLogData);
@@ -17,6 +18,12 @@ document.addEventListener('DOMContentLoaded', () => {
   form.addEventListener('submit', event => {
     event.preventDefault();
     console.log('Form submitted with data:', formData);
+
+    form.email.value = '';
+    form.message.value = '';
+    formData.email = '';
+      formData.message = '';
+      
     localStorage.removeItem('feedback-form-state');
   });
 });
