@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
     formData.message = messageInput.value;
     localStorage.setItem('feedback-form-state', JSON.stringify(formData));
     console.log('Form data:', formData);
+  
   };
   const throttledSaveAndLogData = throttle(saveAndLogData, 500);
 
