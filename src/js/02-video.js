@@ -11,3 +11,12 @@ const updateCurrentTime = throttle(({ seconds }) => {
 }, 1000);
 
 player.on('timeupdate', updateCurrentTime);
+
+player.on('loaded', () => {
+  const savedTime = localStorage.getItem(LOCAL_KEY);
+  if (savedTime !== null) {
+    player.setCurrentTime(parseFloat(savedTime)).catch(error => {
+      console.error('Error setting current time:', error);
+    });
+  }
+});
